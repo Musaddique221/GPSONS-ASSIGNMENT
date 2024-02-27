@@ -51,7 +51,7 @@ const getMyOrders = asyncHandler(async (req, res) => {
  */
 
 const deleteOrder = asyncHandler(async (req, res) => {
-  const order = await Order.findByIdAndDelete(req.body._id);
+  const order = await Order.findByIdAndDelete(req.params.id);
   if (order) {
     res.json({ message: "order removed" });
   } else {

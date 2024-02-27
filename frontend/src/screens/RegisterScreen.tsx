@@ -43,7 +43,7 @@ const RegisterScreen = () => {
       console.log(data);
     } catch (err: any) {
       setError(true);
-      setMsg(err.response.data.message);
+      setMsg(err.response.data.message + " ");
       console.log(err.message);
     }
   };

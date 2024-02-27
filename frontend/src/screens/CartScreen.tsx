@@ -36,12 +36,12 @@ const CartScreen: React.FC = () => {
     }
   };
 
-  const deleteHandler = async (id) => {
+  const deleteHandler = async (productId: string) => {
     try {
-      const { data } = await axios.delete(`http://localhost:5000/cart/${id}`, {
-        id,
-      });
-      console.log(data, "44");
+      const { data } = await axios.delete(
+        `http://localhost:5000/cart/${productId}`
+      );
+      window.location.reload();
     } catch (err: any) {
       console.log(err.message);
     }
@@ -85,7 +85,7 @@ const CartScreen: React.FC = () => {
 
                 <div className="mt-8 flex justify-center">
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => deleteHandler(product._id)}
                   >
                     Delete

@@ -42,7 +42,7 @@ const LoginScreen = () => {
       });
       localStorage.setItem("user", JSON.stringify(data));
       setInfo(true);
-      setMessage("Successfully loggedin");
+      setMessage("Successfully loggedin ");
     } catch (err: any) {
       setError(true);
       setMessage(err.response.data.message + " ");
