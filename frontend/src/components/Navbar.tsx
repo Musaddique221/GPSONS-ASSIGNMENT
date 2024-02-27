@@ -9,16 +9,23 @@ import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [userLoggedIn, setUserLoggedIn] = useState<boolean>(false);
+  const [userFromLocal, setUserFromLocal] = useState();
 
   const router = useRouter();
   useEffect(() => {
     if (typeof window !== "undefined" && window.localStorage) {
       const storedValue = window.localStorage.getItem("user");
       if (storedValue) {
+        const user: any = JSON.parse(storedValue);
+        setUserFromLocal(user.data.user);
         setUserLoggedIn(true);
       }
     }
   }, [userLoggedIn]);
+
+  const clickHandler = () => {
+    router.push(`/cart/${userFromLocal}`);
+  };
 
   const logoutHandler = () => {
     localStorage.removeItem("user");
@@ -41,11 +48,14 @@ const Navbar = () => {
             {userLoggedIn ? (
               <>
                 <BsCart color="white" />
-                <Link legacyBehavior href="/cart">
-                  <a id="link" className="text-white">
-                    Cart
-                  </a>
-                </Link>
+
+                <a
+                  id="link"
+                  className="text-white hover:cursor-pointer"
+                  onClick={clickHandler}
+                >
+                  Cart
+                </a>
               </>
             ) : (
               ""

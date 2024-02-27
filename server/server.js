@@ -7,7 +7,7 @@ import { getProductById, getProducts } from "./routes/ProductRoutes.js";
 
 import connectDB from "./config/db.js";
 import { loginUser, registerUser } from "./routes/UserRoute.js";
-import { addOrderItems, getMyOrders } from "./routes/OrderRoutes.js";
+import { addOrderItems, deleteOrder, getMyOrders } from "./routes/OrderRoutes.js";
 import { protect } from "./middlewares/authMiddleware.js";
 
 dotenv.config();
@@ -24,8 +24,9 @@ app.get("/", getProducts);
 app.get("/product/:id", getProductById);
 app.post("/login", loginUser);
 app.post("/register", registerUser);
-app.post("/order", protect, addOrderItems);
-app.post("/cart", getMyOrders);
+app.post("/order", addOrderItems);
+app.get("/cart/:id", getMyOrders);
+app.delete("/cart/:id", deleteOrder);
 
 const PORT = process.env.PORT || 5000;
 

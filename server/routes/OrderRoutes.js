@@ -35,14 +35,29 @@ const addOrderItems = asyncHandler(async (req, res) => {
  * @access	private
  */
 const getMyOrders = asyncHandler(async (req, res) => {
-  const { user } = req.body;
-  console.log(user, "39")
+  console.log(req.params.id, "38");
   try {
-    const orders = await Order.findById(user);
+    const orders = await Order.find({ user: req.params.id });
     res.json(orders);
   } catch (err) {
     res.json(err.message);
   }
 });
 
-export { addOrderItems, getMyOrders };
+/**
+ * @desc		Delete a product
+ * @route		DELETE /cart/:id
+ * @access	public/admin
+ */
+
+const deleteOrder = asyncHandler(async (req, res) => {
+  const order = await Order.findByIdAndDelete(req.body._id);
+  if (order) {
+    res.json({ message: "order removed" });
+  } else {
+    res.status(404);
+    throw new Error("order not found");
+  }
+});
+
+export { addOrderItems, getMyOrders, deleteOrder };

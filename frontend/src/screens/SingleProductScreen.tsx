@@ -41,10 +41,6 @@ const SingleProduct = () => {
   const submitHandler = async () => {
     try {
       const order: any = await axios.post("http://localhost:5000/order", {
-        headers: {
-          Authorization: `Bearer ${userFromLocal.data.token}`,
-          "Content-Type": "application/json",
-        },
         user: userFromLocal.data.user,
         name: data.name,
         image: data.image,
@@ -53,7 +49,7 @@ const SingleProduct = () => {
         description: data.description,
         price: data.price,
       });
-      router.push("/cart");
+      router.push(`/cart/${userFromLocal.data.user}`);
       console.log(data, "39");
     } catch (err: any) {
       setError(true);
