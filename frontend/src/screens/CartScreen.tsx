@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 import Loader from "@/components/Loader";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +9,6 @@ const CartScreen: React.FC = () => {
   const [showLoader, setShowLoader] = useState<boolean>(true);
   const [orders, setOrders] = useState<products[]>([]);
   const [userFromLocal, setUserFromLocal] = useState<any>();
-  const [productId, setId] = useState<any>();
   const path = usePathname();
 
   const id = path.split("/")[2];
@@ -37,7 +36,7 @@ const CartScreen: React.FC = () => {
     }
   };
 
-  const deleteHandler = async (productId) => {
+  const deleteHandler = async (id) => {
     try {
       const { data } = await axios.delete(`http://localhost:5000/cart/${id}`, {
         id,
@@ -87,7 +86,7 @@ const CartScreen: React.FC = () => {
                 <div className="mt-8 flex justify-center">
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    onClick={deleteHandler(product._id)}
+                    onClick={() => deleteHandler(product._id)}
                   >
                     Delete
                   </button>
