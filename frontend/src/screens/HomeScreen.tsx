@@ -34,7 +34,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     getProducts();
-  }, []);
+  });
 
   return (
     <>

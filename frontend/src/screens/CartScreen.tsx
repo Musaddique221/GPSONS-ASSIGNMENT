@@ -59,7 +59,7 @@ const CartScreen: React.FC = () => {
 
   useEffect(() => {
     getMyOrders();
-  }, []);
+  });
   return (
     <>
       <div className="container w-full mx-auto pt-20">

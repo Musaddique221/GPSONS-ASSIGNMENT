@@ -29,11 +29,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <>
       <div className="bg-white shadow-lg rounded-lg overflow-hidden mt-10 w-80 mx-auto ">
         <a className="hover:cursor-pointer" href={`product/${product._id}`}>
-          <img
-            className="h-70 object-cover"
-            src={product.image}
-            alt={product.name}
-          />
+          <Image className="h-70 object-cover" src={product.image} alt="image">
+            {" "}
+          </Image>
         </a>
         <div className="p-4">
           <h2 className="text-gray-800 text-xl font-semibold mb-2">
@@ -62,11 +60,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
                 <ModalCloseButton />
                 <ModalBody>
-                  <img
+                  <Image
                     className="h-50 object-cover"
                     src={product.image}
                     alt={product.name}
-                  />
+                  ></Image>
                   <p className="text-gray-600 mb-4 mt-4 ">
                     {product.description}
                   </p>
