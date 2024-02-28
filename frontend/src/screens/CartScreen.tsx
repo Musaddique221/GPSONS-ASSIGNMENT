@@ -3,6 +3,9 @@ import React from "react";
 import { useState, useEffect, MouseEvent } from "react";
 import Loader from "@/components/Loader";
 import { usePathname } from "next/navigation";
+// import Image from "next/image";
+
+import { Box, Grid, Image, Heading, Text, Button } from "@chakra-ui/react";
 
 import axios from "axios";
 const CartScreen: React.FC = () => {
@@ -26,7 +29,7 @@ const CartScreen: React.FC = () => {
   const getMyOrders = async () => {
     try {
       const { data } = await axios.get<products[]>(
-        `http://localhost:5000/cart/${id}`
+        `https://gpson-back-end.onrender.com/cart/${id}`
       );
       console.log(data, "19");
       setShowLoader(false);
@@ -39,7 +42,7 @@ const CartScreen: React.FC = () => {
   const deleteHandler = async (productId: string) => {
     try {
       const { data } = await axios.delete(
-        `http://localhost:5000/cart/${productId}`
+        `https://gpson-back-end.onrender.com/cart/${productId}`
       );
       window.location.reload();
     } catch (err: any) {
@@ -61,12 +64,14 @@ const CartScreen: React.FC = () => {
     <>
       <div className="container w-full mx-auto pt-20">
         <div className="w-full mb-8">
-          <h1 className="text-3xl text-center font-bold">Your Shopping Cart</h1>
+          <Heading as="h3" m="2">
+            Your Shopping Cart
+          </Heading>
         </div>
         {orders.map((product: any) => {
           return (
             <>
-              <div className="flex flex-col">
+              {/* <div className="flex flex-col">
                 <div className="flex items-center mb-5 pl-10">
                   <img
                     className="h-16 w-16 object-cover rounded"
@@ -91,7 +96,35 @@ const CartScreen: React.FC = () => {
                     Delete
                   </button>
                 </div>
-              </div>
+              </div> */}
+              <Box p={8}>
+                <Grid templateColumns="repeat(3, 1fr)" gap={4}>
+                  <Box>
+                    <Image src={product.image} alt="image" h="150px" />
+                  </Box>
+                  <Box>
+                    <Heading as="h1" size="lg">
+                      {product.name}
+                    </Heading>
+                    <Text fontSize="md" color="gray.600" mt={2}>
+                      {product.brand}
+                    </Text>
+                  </Box>
+                  <Box>
+                    <Text fontSize="lg" fontWeight="bold">
+                      {product.price}
+                    </Text>
+                    <Button
+                      colorScheme="red"
+                      size="sm"
+                      mt={2}
+                      onClick={() => deleteHandler(product._id)}
+                    >
+                      Remove
+                    </Button>
+                  </Box>
+                </Grid>
+              </Box>
             </>
           );
         })}

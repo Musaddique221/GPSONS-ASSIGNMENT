@@ -24,7 +24,7 @@ const HomeScreen = () => {
 
   const getProducts = async () => {
     try {
-      const { data } = await axios.get<products[]>("http://localhost:5000/");
+      const { data } = await axios.get<products[]>("https://gpson-back-end.onrender.com/");
       setShowLoader(false);
       setProducts(data);
     } catch (err: any) {

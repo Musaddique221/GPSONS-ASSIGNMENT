@@ -34,7 +34,7 @@ const RegisterScreen = () => {
   const submitHandler = async (e: any) => {
     e.preventDefault();
     try {
-      const data = await axios.post("http://localhost:5000/register", {
+      const data = await axios.post("https://gpson-back-end.onrender.com/register", {
         name,
         email,
         password,
@@ -81,7 +81,7 @@ const RegisterScreen = () => {
                 placeholder="Musaddique Shaikh"
               />
               {!isError ? (
-                <FormHelperText>Enter the namd you'd like to.</FormHelperText>
+                <FormHelperText>Enter the namd you would like to.</FormHelperText>
               ) : (
                 <FormErrorMessage>Name is required.</FormErrorMessage>
               )}
@@ -97,7 +97,7 @@ const RegisterScreen = () => {
                 placeholder="username@domain.com"
               />
               {!isError ? (
-                <FormHelperText>Enter the email you'd like to.</FormHelperText>
+                <FormHelperText>Enter the email you would like to.</FormHelperText>
               ) : (
                 <FormErrorMessage>Email is required.</FormErrorMessage>
               )}
@@ -114,7 +114,7 @@ const RegisterScreen = () => {
               />
               {!isError ? (
                 <FormHelperText>
-                  Enter the passowrd you'd like to.
+                  Enter the passowrd you would like to.
                 </FormHelperText>
               ) : (
                 <FormErrorMessage>Password is required.</FormErrorMessage>

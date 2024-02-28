@@ -36,7 +36,7 @@ const LoginScreen = () => {
   const submitHandler = async (e: any) => {
     e.preventDefault();
     try {
-      const data = await axios.post("http://localhost:5000/login", {
+      const data = await axios.post("https://gpson-back-end.onrender.com/login", {
         email,
         password,
       });
@@ -103,7 +103,7 @@ const LoginScreen = () => {
                 placeholder="musaddique@example.com"
               />
               {!isError ? (
-                <FormHelperText>Enter the email you'd like to.</FormHelperText>
+                <FormHelperText>Enter the email you wouldd like to.</FormHelperText>
               ) : (
                 <FormErrorMessage>Email is required.</FormErrorMessage>
               )}
@@ -120,7 +120,7 @@ const LoginScreen = () => {
               />
               {!isError ? (
                 <FormHelperText>
-                  Enter the passowrd you'd like to.
+                  Enter the passowrd you would like to.
                 </FormHelperText>
               ) : (
                 <FormErrorMessage>Password is required.</FormErrorMessage>
